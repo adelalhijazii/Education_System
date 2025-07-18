@@ -1,0 +1,72 @@
+﻿@model Education.Areas.Admin.ViewModels.SystemSettingViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">SystemSetting</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="SystemSetting">SystemSetting</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="SystemSettingId" />
+    <input type="hidden" asp-for="CreateUser" />
+    <input type="hidden" asp-for="CreateDate" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingLogoImageUrl" class="form-label"></label>
+                <input asp-for="SystemSettingLogoImageUrl" class="form-control" />
+                <span asp-validation-for="SystemSettingLogoImageUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingWelcomeNoteTitle" class="form-label"></label>
+                <textarea asp-for="SystemSettingWelcomeNoteTitle" class="form-control"></textarea>
+                <span asp-validation-for="SystemSettingWelcomeNoteTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingWelcomeNoteBreef" class="form-label"></label>
+                <textarea asp-for="SystemSettingWelcomeNoteBreef" class="form-control"></textarea>
+                <span asp-validation-for="SystemSettingWelcomeNoteBreef" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingWelcomeNoteDescription" class="form-label"></label>
+                <textarea asp-for="SystemSettingWelcomeNoteDescription" rows="4" class="form-control"></textarea>
+                <span asp-validation-for="SystemSettingWelcomeNoteDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingFile2" class="form-label"></label>
+                <input asp-for="SystemSettingFile2" class="form-control" />
+                <span asp-validation-for="SystemSettingFile2" class="text-danger"></span>
+                <input type="hidden" asp-for="SystemSettingWelcomeNoteImageUrl" class="form-control" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="SystemSettingCopyright" class="form-label"></label>
+                <input asp-for="SystemSettingCopyright" class="form-control" />
+                <span asp-validation-for="SystemSettingCopyright" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>

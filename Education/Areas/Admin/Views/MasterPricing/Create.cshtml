@@ -1,0 +1,55 @@
+﻿@model Education.Areas.Admin.ViewModels.MasterPricingViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">MasterPricing</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterPricing">MasterPricing</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="MasterPricingId" class="form-control" type="hidden" value="0" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterPricingTitle" class="form-label"></label>
+                <input asp-for="MasterPricingTitle" class="form-control" placeholder="Enter Title" />
+                <span asp-validation-for="MasterPricingTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterPricingBreef" class="form-label"></label>
+                <input asp-for="MasterPricingBreef" class="form-control" placeholder="Enter Breef" />
+                <span asp-validation-for="MasterPricingBreef" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterPricingDescription" class="form-label"></label>
+                <textarea asp-for="MasterPricingDescription" class="form-control" placeholder="Enter Description"></textarea>
+                <span asp-validation-for="MasterPricingDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterPricingUrl" class="form-label"></label>
+                <input asp-for="MasterPricingUrl" class="form-control" placeholder="Enter URL" />
+                <span asp-validation-for="MasterPricingUrl" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>

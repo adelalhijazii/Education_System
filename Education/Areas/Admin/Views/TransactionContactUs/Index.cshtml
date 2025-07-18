@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Education.Models.TransactionContactUs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="pagetitle">
+    <h1>Education</h1>
+    <h4></h4>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item">TransactionContactUs</li>
+        </ol>
+    </nav>
+</div>
+
+<h3></h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                ContactUsName
+            </th>
+            <th>
+                ContactUsEmail
+            </th>
+            <th>
+                ContactUsSubject
+            </th>
+            <th>
+                ContactUsMessage
+            </th>
+            <th>operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionContactUsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionContactUsEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionContactUsSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionContactUsMessage)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TransactionContactUsId" style="text-decoration:none"><i style="color:forestgreen;font-size:20px" class="bi bi-pencil-square"></i></a> |
+                    <a class="btnDelete" style="text-decoration:none" href="#" data-toggle="modal" data-target="#exampleModal" data-paths="@Url.ActionLink("Delete","TransactionContactUs",new{Delete=item.TransactionContactUsId})"><i style="color:red;font-size:20px" class="bi bi-trash-fill"> </i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are You sure want to delete this Record ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnClose" data-dismiss="modal">Close</button>
+                <input type="button" class="btn btn-danger" value="Delete" id="btnConfirmDelete" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var urlPatheDelete = "";
+        $(".btnDelete").click(function () {
+            //alert($(this).data("paths"))
+            urlPathDelete = $(this).data("paths");
+            console.log(urlPathDelete)
+
+        })
+        $("#btnConfirmDelete").click(function () {
+            window.location = urlPatheDelete;
+        })
+
+        $("#btnConfirmDelete").click(function () {
+
+            window.location = urlPathDelete;
+        })
+    })
+</script>

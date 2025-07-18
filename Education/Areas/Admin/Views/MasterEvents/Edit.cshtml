@@ -1,0 +1,58 @@
+﻿@model Education.Areas.Admin.ViewModels.MasterEventsViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">MasterEvents</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterEvents">MasterEvents</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="MasterEventsId" />
+    <input type="hidden" asp-for="CreateUser" />
+    <input type="hidden" asp-for="CreateDate" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterEventsTitle" class="form-label"></label>
+                <input asp-for="MasterEventsTitle" class="form-control" />
+                <span asp-validation-for="MasterEventsTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterEventsDate" class="form-label"></label>
+                <input asp-for="MasterEventsDate" class="form-control" />
+                <span asp-validation-for="MasterEventsDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterEventsDescription" class="form-label"></label>
+                <textarea asp-for="MasterEventsDescription" class="form-control"></textarea>
+                <span asp-validation-for="MasterEventsDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterEventsFile" class="form-label"></label>
+                <input asp-for="MasterEventsFile" class="form-control" />
+                <span asp-validation-for="MasterEventsFile" class="text-danger"></span>
+                <input type="hidden" asp-for="MasterEventsImageUrl" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>

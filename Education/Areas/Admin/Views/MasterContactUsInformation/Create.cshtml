@@ -1,0 +1,41 @@
+﻿@model Education.Areas.Admin.ViewModels.MasterContactUsInformationViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">MasterContactUsInformation</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterContactUsInformation">MasterContactUsInformation</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="MasterContactUsInformationId" class="form-control" type="hidden" value="0" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterContactUsInformationDescription" class="form-label"></label>
+                <input asp-for="MasterContactUsInformationDescription" class="form-control" placeholder="Enter Description" />
+                <span asp-validation-for="MasterContactUsInformationDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterContactUsInformationIcon" class="form-label"></label>
+                <input asp-for="MasterContactUsInformationIcon" class="form-control" placeholder="Enter Information" />
+                <span asp-validation-for="MasterContactUsInformationIcon" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>

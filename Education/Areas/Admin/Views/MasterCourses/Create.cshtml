@@ -1,0 +1,69 @@
+﻿@model Education.Areas.Admin.ViewModels.MasterCoursesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">MasterCourses</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterCourses">MasterCourses</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="MasterCoursesId" class="form-control" type="hidden" value="0" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesTitle" class="form-label"></label>
+                <input asp-for="MasterCoursesTitle" class="form-control" placeholder="Enter Title" />
+                <span asp-validation-for="MasterCoursesTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesPrice" class="form-label"></label>
+                <input asp-for="MasterCoursesPrice" class="form-control" placeholder="Enter Price" />
+                <span asp-validation-for="MasterCoursesPrice" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesBreef" class="form-label"></label>
+                <input asp-for="MasterCoursesBreef" class="form-control" placeholder="Enter Breef" />
+                <span asp-validation-for="MasterCoursesBreef" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesDescription" class="form-label"></label>
+                <textarea asp-for="MasterCoursesDescription" class="form-control" placeholder="Enter Description"></textarea>
+                <span asp-validation-for="MasterCoursesDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesFile" class="form-label"></label>
+                <input asp-for="MasterCoursesFile" class="form-control" />
+                <span asp-validation-for="MasterCoursesFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterCoursesUrl" class="form-label"></label>
+                <input asp-for="MasterCoursesUrl" class="form-control" placeholder="Enter URL" />
+                <span asp-validation-for="MasterCoursesUrl" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>

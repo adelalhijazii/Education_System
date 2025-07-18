@@ -1,0 +1,58 @@
+﻿@model Education.Areas.Admin.ViewModels.MasterWhatPeopleSayViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="pagetitle">
+    <h2 class="fw-bold">MasterWhatPeopleSay</h2>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterWhatPeopleSay">MasterWhatPeopleSay</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="MasterWhatPeopleSayId" />
+    <input type="hidden" asp-for="CreateUser" />
+    <input type="hidden" asp-for="CreateDate" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterWhatPeopleSayTitle" class="form-label"></label>
+                <input asp-for="MasterWhatPeopleSayTitle" class="form-control" />
+                <span asp-validation-for="MasterWhatPeopleSayTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterWhatPeopleSayBreef" class="form-label"></label>
+                <input asp-for="MasterWhatPeopleSayBreef" class="form-control" />
+                <span asp-validation-for="MasterWhatPeopleSayBreef" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterWhatPeopleSayDescription" class="form-label"></label>
+                <textarea asp-for="MasterWhatPeopleSayDescription" class="form-control"></textarea>
+                <span asp-validation-for="MasterWhatPeopleSayDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="MasterWhatPeopleSayFile" class="form-label"></label>
+                <input asp-for="MasterWhatPeopleSayFile" class="form-control" />
+                <span asp-validation-for="MasterWhatPeopleSayFile" class="text-danger"></span>
+                <input type="hidden" asp-for="MasterWhatPeopleSayImagesUrl" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>
