@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var pagesControllers = new[] {
+                "MasterAboutUs", "MasterContactUsInformation", "MasterCourses", "MasterEvents",
+                "MasterFeatures", "MasterMenu", "MasterOurServices", "MasterPricing", "MasterSlider",
+                "MasterSocialMedium", "MasterTrainers", "MasterUsefullLinks", "MasterWhatPeopleSay",
+                "MasterWhyChoose", "SystemSetting"
+                };
+
+    var transactionControllers = new[] {
+                "TransactionContactUs", "TransactionNewsLetter"
+                };
+
+    var isPagesOpen = pagesControllers.Contains(currentController);
+    var isTransactionOpen = transactionControllers.Contains(currentController);
+
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -31,47 +52,34 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="#" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">EducationAdmin</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div><!-- End Logo -->
-
-        <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div><!-- End Search Bar -->
+        </div>
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
-
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="~/Admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">@User.Identity.Name</span>
-                    </a><!-- End Profile Iamge Icon -->
+                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                            <i class="bi bi-person-fill me-2" style="font-size:2rem;"></i> @User.Identity.Name
+                        </span>
+                    </a>
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>@User.Identity.Name</h6>
-                            <span>Web Designer</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" asp-route-id="@userId" asp-action="Details" asp-controller="AppUser">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -81,17 +89,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                            <a class="dropdown-item d-flex align-items-center" asp-action="NeedHelp" asp-controller="AppUser">
                                 <i class="bi bi-question-circle"></i>
                                 <span>Need Help?</span>
                             </a>
@@ -108,10 +106,10 @@
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                </li>
 
             </ul>
-        </nav><!-- End Icons Navigation -->
+        </nav>
 
     </header>
 
@@ -120,100 +118,100 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link @(isPagesOpen ? "" : "collapsed")" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Pages</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="components-nav" class="nav-content collapse @(isPagesOpen ? "show" : "")" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a asp-action="Index" asp-controller="MasterAboutUs">
+                        <a asp-action="Index" asp-controller="MasterAboutUs" class="@(currentController == "MasterAboutUs" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterAboutUs</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterContactUsInformation">
+                        <a asp-action="Index" asp-controller="MasterContactUsInformation" class="@(currentController == "MasterContactUsInformation" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterContactUsInformation</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterCourses">
+                        <a asp-action="Index" asp-controller="MasterCourses" class="@(currentController == "MasterCourses" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterCourses</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterEvents">
+                        <a asp-action="Index" asp-controller="MasterEvents" class="@(currentController == "MasterEvents" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterEvents</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterFeatures">
+                        <a asp-action="Index" asp-controller="MasterFeatures" class="@(currentController == "MasterFeatures" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterFeatures</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterMenu">
+                        <a asp-action="Index" asp-controller="MasterMenu" class="@(currentController == "MasterMenu" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterMenu</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterOurServices">
+                        <a asp-action="Index" asp-controller="MasterOurServices" class="@(currentController == "MasterOurServices" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterOurServices</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterPricing">
+                        <a asp-action="Index" asp-controller="MasterPricing" class="@(currentController == "MasterPricing" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterPricing</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterSlider">
+                        <a asp-action="Index" asp-controller="MasterSlider" class="@(currentController == "MasterSlider" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterSlider</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterSocialMedium">
+                        <a asp-action="Index" asp-controller="MasterSocialMedium" class="@(currentController == "MasterSocialMedium" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterSocialMedium</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterTrainers">
+                        <a asp-action="Index" asp-controller="MasterTrainers" class="@(currentController == "MasterTrainers" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterTrainers</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterUsefullLinks">
+                        <a asp-action="Index" asp-controller="MasterUsefullLinks" class="@(currentController == "MasterUsefullLinks" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterUsefullLinks</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterWhatPeopleSay">
+                        <a asp-action="Index" asp-controller="MasterWhatPeopleSay" class="@(currentController == "MasterWhatPeopleSay" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterWhatPeopleSay</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="MasterWhyChoose">
+                        <a asp-action="Index" asp-controller="MasterWhyChoose" class="@(currentController == "MasterWhyChoose" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>MasterWhyChoose</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="SystemSetting">
+                        <a asp-action="Index" asp-controller="SystemSetting" class="@(currentController == "SystemSetting" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>SystemSetting</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
+            </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#Transaction-nav" data-bs-toggle="collapse">
+                <a class="nav-link @(isTransactionOpen ? "" : "collapsed")" data-bs-target="#Transaction-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Transaction</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="Transaction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="Transaction-nav" class="nav-content collapse @(isTransactionOpen ? "show" : "")" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a asp-action="Index" asp-controller="TransactionContactUs">
+                        <a asp-action="Index" asp-controller="TransactionContactUs" class="@(currentController == "TransactionContactUs" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>TransactionContactUs</span>
                         </a>
                     </li>
                     <li>
-                        <a asp-action="Index" asp-controller="TransactionNewsLetter">
+                        <a asp-action="Index" asp-controller="TransactionNewsLetter" class="@(currentController == "TransactionNewsLetter" ? "active" : "")">
                             <i class="bi bi-circle"></i><span>TransactionNewsLetter</span>
                         </a>
                     </li>
@@ -223,25 +221,11 @@
             <li class="nav-heading">Account</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" asp-action="Index" asp-controller="AppUser">
+                <a class="nav-link @(currentController == "AppUser" ? "active" : "collapsed")" asp-action="Index" asp-controller="AppUser">
                     <i class="bi bi-card-list"></i>
                     <span>AppUser</span>
                 </a>
             </li>
-
-            @*<li class="nav-item">
-            <a class="nav-link collapsed" asp-action="Signup" asp-controller="Account">
-            <i class="bi bi-card-list"></i>
-            <span>Signup</span>
-            </a>
-            </li>
-
-            <li class="nav-item">
-            <a class="nav-link collapsed" asp-action="Signin" asp-controller="Account">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span>Signin</span>
-            </a>
-            </li>*@
 
         </ul>
     </aside>
@@ -263,11 +247,7 @@
             &copy; Copyright <strong><span>EducationAdmin</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="#">EducationAdmin</a>
         </div>
     </footer>
 

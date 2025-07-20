@@ -1,0 +1,44 @@
+﻿@model Education.Models.AppUser
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Details";
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+<div class="pagetitle">
+    <h2>AppUser</h2>
+    <br />
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="AppUser">AppUser</a></li>
+            <li class="breadcrumb-item active">Details</li>
+        </ol>
+    </nav>
+</div>
+
+<form asp-action="Details">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="row m-0">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" disabled />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="PasswordHash" class="form-label"></label>
+                <input asp-for="PasswordHash" class="form-control" disabled />
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="text-end">
+        <a asp-action="Edit" asp-route-id="@userId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </div>
+</form>
